@@ -1,0 +1,23 @@
+.paginator {
+  margin: 20px 0;
+}
+
+.paginator span {
+  display: inline-block;
+  text-align: center;
+  width: 25px;
+  padding: 3px;
+  background: #333;
+  color: white;
+  font-size: .9rem;
+  cursor: pointer;
+}
+
+.paginator span:hover,
+.paginator span.current {
+  color: red;
+}
+
+.paginator span+span {
+  margin-left: 4px;
+}
