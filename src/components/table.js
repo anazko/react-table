@@ -1,22 +1,21 @@
-import React, { useState, useCallback } from "react";
-import Pagination from './pagination/pagination';
+import React, { useState, useCallback } from 'react';
+import ReactPaginate from 'react-paginate';
+import _ from 'lodash';
+
 
 export default ({data}) => {
 
-  // let [itemsPerPage, setItemsPerPage] = useState(30);
   let itemsPerPage = 20;
+  const pageCount = Math.ceil(data.length / itemsPerPage);
   let [currentPage, setCurrentPage] = useState(1);
 
-  let startItem = ((currentPage-1) * itemsPerPage);
-  let endItem = ((currentPage-1) * itemsPerPage) + itemsPerPage;
-
   const onPageSelect = useCallback((page) => {
-    setCurrentPage(page);
+    setCurrentPage(page.selected);
   }, []);
 
-  const pagedData = data.slice(startItem, endItem);
+  const chunk = _.chunk(data, itemsPerPage);
 
-  const rows = pagedData.map(person => {
+  const rows = chunk[currentPage].map(person => {
     return (
       <tr key={person.id}>
         <td>{person.id}</td>
@@ -29,7 +28,6 @@ export default ({data}) => {
   });
 
   return <>
-    {startItem} - {endItem}
     <table>
       <thead>
         <tr>
@@ -44,12 +42,26 @@ export default ({data}) => {
         {rows}
       </tbody>
     </table>
-    <Pagination 
-      totalItems={ data.length } 
-      itemsPerPage={ itemsPerPage } 
-      currentPage={ currentPage }
-      onSelect={ onPageSelect } 
-    />  
+    <ReactPaginate
+      previousLabel={'◀'}
+      nextLabel={'▶'}
+      breakLabel={'...'}
+      breakClassName={'break-me'}
+      pageCount={pageCount}
+      marginPagesDisplayed={1}
+      pageRangeDisplayed={15}
+      onPageChange={onPageSelect}
+      containerClassName={'pagination'}
+      subContainerClassName={'pages pagination'}
+      activeClassName={'active'}
+      forcePage={currentPage}
+      pageClassName={'page'}
+      pageLinkClassName={'pageLink'}
+      previousClassName={'pagePrev'}
+      nextClassName={'pageNext'}
+      previousLinkClassName={'pageLink'}
+      nextLinkClassName={'pageLink'}
+    />
   </>
 
 }

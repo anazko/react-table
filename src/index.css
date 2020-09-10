@@ -63,4 +63,60 @@ tbody tr:hover {
   cursor: pointer;
 }
 
+ul.pagination {
+  position: relative;
+  list-style: none;
+  margin: 20px 0;
+  padding: 5px;
+  display: flex;
+  justify-content: center;
+  background: #ddd;
+}
+
+ul.pagination .page {
+  display: block;
+  margin: 0 1px;
+}
+
+ul.pagination .pageLink {
+  min-width: 25px;
+  min-height: 20px;
+  font-size: 13px;
+  font-weight: bold;
+  display: block;
+  padding: 4px;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  text-align: center;
+}
+
+.pagePrev,
+.pageNext {
+  position: absolute;
+}
+
+.pagePrev {
+  left: 5px;
+}
+
+.pageNext {
+  right: 5px;
+}
+
+ul.pagination .page.active {
+  background: darkred;
+  color: white;
+}
+
+ul.pagination .pageLink:hover {
+  background: #aaa;
+}
+
+.pageLink:focus,
+.page:focus {
+  outline: none;
+}
+
+
 
