@@ -1,20 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import Pagination from './pagination/pagination';
 
 export default ({data}) => {
 
-  let [itemsPerPage, setItemsPerPage] = useState(30);
+  // let [itemsPerPage, setItemsPerPage] = useState(30);
+  let itemsPerPage = 20;
   let [currentPage, setCurrentPage] = useState(1);
 
   let startItem = ((currentPage-1) * itemsPerPage);
   let endItem = ((currentPage-1) * itemsPerPage) + itemsPerPage;
 
-
-  const onPageSelect = (page) => {
+  const onPageSelect = useCallback((page) => {
     setCurrentPage(page);
-  }
+  }, []);
 
-  const rows = data.slice(startItem, endItem).map(person => {
+  const pagedData = data.slice(startItem, endItem);
+
+  const rows = pagedData.map(person => {
     return (
       <tr key={person.id}>
         <td>{person.id}</td>
@@ -27,15 +29,7 @@ export default ({data}) => {
   });
 
   return <>
-
-    <Pagination 
-      totalItems={ data.length } 
-      itemsPerPage={ itemsPerPage } 
-      currentPage={ currentPage }
-      onSelect={ onPageSelect } 
-    />  
     {startItem} - {endItem}
-
     <table>
       <thead>
         <tr>
@@ -50,7 +44,12 @@ export default ({data}) => {
         {rows}
       </tbody>
     </table>
-     
+    <Pagination 
+      totalItems={ data.length } 
+      itemsPerPage={ itemsPerPage } 
+      currentPage={ currentPage }
+      onSelect={ onPageSelect } 
+    />  
   </>
 
 }

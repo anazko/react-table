@@ -7,17 +7,19 @@
   text-align: center;
   width: 25px;
   padding: 3px;
-  background: #333;
-  color: white;
-  font-size: .9rem;
+  background: #f0f0f0;
+  color: #000;
+  font-size: .8rem;
+  font-weight: bold;
   cursor: pointer;
 }
 
 .paginator span:hover,
 .paginator span.current {
-  color: red;
+  color: white;
+  background: #aaa;
 }
 
 .paginator span+span {
-  margin-left: 4px;
+  margin-left: 2px;
 }

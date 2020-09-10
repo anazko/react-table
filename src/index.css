@@ -29,6 +29,8 @@ code {
 
 table {
   font-size: 13px;
+  width: 100%;
+  border-collapse: collapse;
 }
 
 thead {
@@ -38,10 +40,27 @@ thead {
 }
 
 td, th {
-  padding: 5px;
+  padding: 3px;
+  border-right: 3px solid #fff;
+  border-left: 3px solid #fff;
 }
 
-tbody tr:nth-child(odd) {
-  background: #fafafa;
+th {
+  padding: 6px 3px;
 }
+
+/* tbody tr:nth-child(odd) {
+  background: #fafafa;
+} */
+
+tbody tr {
+  background: #fafafa;
+  border-bottom: 1px solid #eee;
+}
+
+tbody tr:hover {
+  background: #f0f0f0;
+  cursor: pointer;
+}
+
 

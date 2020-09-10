@@ -1,21 +1,21 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useCallback} from 'react';
 import './pagination.css';
 
 const Pagination = ({ totalItems, itemsPerPage, currentPage, onSelect}) => {
+
+  const handleClick = useCallback((e) => {
+    if (e.target.dataset.page) {
+      onSelect(+e.target.dataset.page);
+    }
+  }, [onSelect]);
 
   useEffect(() => {
     document.querySelector(".paginator").addEventListener("click", handleClick);
     return () => {
       document.querySelector(".paginator").removeEventListener("click", handleClick);
     }
-  }, []);
+  }, [handleClick]);
   
-  const handleClick = (e) => {
-    if (e.target.dataset.page) {
-      onSelect(+e.target.dataset.page);
-    }
-  }
-
   const items = [];
   const pageCount = Math.ceil(totalItems / itemsPerPage);
 
