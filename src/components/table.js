@@ -2,14 +2,16 @@ import React, { useState, useCallback } from 'react';
 import ReactPaginate from 'react-paginate';
 import _ from 'lodash';
 import PersonDetails from './personDetails';
+import FilterInput from './filterInput';
 
 
 const Table = ({data}) => {
 
-  let itemsPerPage = 10;
-  const pageCount = Math.ceil(data.length / itemsPerPage);
-  let [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10;
+
+  let [currentPage, setCurrentPage] = useState(0);
   let [person, setPerson] = useState({});
+  let [filter, setFilter] = useState('');
 
   const onPageSelect = useCallback((page) => {
     setCurrentPage(page.selected);
@@ -19,21 +21,41 @@ const Table = ({data}) => {
     setPerson(person);
   }
 
-  const chunk = _.chunk(data, itemsPerPage);
+  const onSearch = (text) => {
+    setFilter(text);
+    setCurrentPage(0);
+  }
 
-  const rows = chunk[currentPage].map(person => {
-    return (
-      <tr key={person.id} onClick={ onRowSelect.bind(null, person) } >
-        <td>{person.id}</td>
-        <td>{person.firstName}</td>
-        <td>{person.lastName}</td>
-        <td>{person.email}</td>
-        <td>{person.phone}</td>
-      </tr>
-    )
-  });
+  let filteredData = [];
+
+  if (filter !== '') {
+    filteredData = data.filter(item => {
+      if ( item.firstName.toLowerCase().includes(filter.toLowerCase()) ) return true;
+    })
+  } else {
+    filteredData = data;
+  }
+
+  const pageCount = Math.ceil(filteredData.length / itemsPerPage);
+  const chunk = _.chunk(filteredData, itemsPerPage);
+  let rows = [];
+
+  if (filteredData.length) {
+    rows = chunk[currentPage].map(person => {
+      return (
+        <tr key={person.id} onClick={ onRowSelect.bind(null, person) } >
+          <td>{person.id}</td>
+          <td>{person.firstName}</td>
+          <td>{person.lastName}</td>
+          <td>{person.email}</td>
+          <td>{person.phone}</td>
+        </tr>
+      )
+    });
+  }
 
   return <>
+    <FilterInput onSearch={onSearch} />
     <table>
       <thead>
         <tr>

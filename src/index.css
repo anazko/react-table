@@ -26,8 +26,6 @@ p {
   margin: .3rem 0;
 }
 
-
-
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
@@ -45,18 +43,21 @@ table {
   font-size: 13px;
   width: 100%;
   border-collapse: collapse;
+  border: 5px solid #f0f0f0;
+  background: #000;
 }
 
 thead {
   background:#999;
   color: white;
   font-weight: bold;
+  text-align: left;
 }
 
 td, th {
   padding: 3px;
-  border-right: 3px solid #fff;
-  border-left: 3px solid #fff;
+  border-right: 1px solid #fff;
+  border-left: 1px solid #fff;
 }
 
 th {
@@ -69,7 +70,8 @@ th {
 
 tbody tr {
   background: #fafafa;
-  border-bottom: 1px solid #eee;
+  border-bottom: 3px solid #fff;
+  
 }
 
 tbody tr:hover {
@@ -136,6 +138,47 @@ ul.pagination .pageLink:hover {
   padding: 20px;
   background: #f0f0f0;
 }
+
+.break-me a {
+  font-size: 13px;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 0 10px;
+}
+
+
+.filterInput {
+  margin: 10px 0;
+  
+}
+
+.filterInput input {
+  padding: 3px;
+  border-radius: 0;
+  border: 1px solid #eee;
+}
+
+.filterInput button {
+  padding: 3px 12px;
+  border-radius: 0;
+  border: 1px solid #eee;
+  cursor: pointer;
+}
+
+.filterInput button:hover {
+  background: #ddd;
+}
+
+.filterInput input:focus,
+.filterInput button:focus
+{
+  outline: none;
+}
+
+.filterInput input:focus {
+  border: 1px solid green;
+}
+
 
 
 
