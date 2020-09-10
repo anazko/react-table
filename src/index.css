@@ -11,8 +11,22 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background: #333;
-  font-size: 16px;
+  font-size: 13px;
 }
+
+h3 {
+  margin: 0.8rem 0;
+}
+
+h4 { 
+  margin: 0.6rem 0;
+}
+
+p {
+  margin: .3rem 0;
+}
+
+
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
@@ -67,7 +81,7 @@ ul.pagination {
   position: relative;
   list-style: none;
   margin: 20px 0;
-  padding: 5px;
+  padding: 0;
   display: flex;
   justify-content: center;
   background: #ddd;
@@ -97,11 +111,11 @@ ul.pagination .pageLink {
 }
 
 .pagePrev {
-  left: 5px;
+  left: 0;
 }
 
 .pageNext {
-  right: 5px;
+  right: 0;
 }
 
 ul.pagination .page.active {
@@ -116,6 +130,11 @@ ul.pagination .pageLink:hover {
 .pageLink:focus,
 .page:focus {
   outline: none;
+}
+
+.personDetails {
+  padding: 20px;
+  background: #f0f0f0;
 }
 
 

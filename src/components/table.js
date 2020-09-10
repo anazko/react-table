@@ -1,23 +1,29 @@
 import React, { useState, useCallback } from 'react';
 import ReactPaginate from 'react-paginate';
 import _ from 'lodash';
+import PersonDetails from './personDetails';
 
 
-export default ({data}) => {
+const Table = ({data}) => {
 
-  let itemsPerPage = 20;
+  let itemsPerPage = 10;
   const pageCount = Math.ceil(data.length / itemsPerPage);
   let [currentPage, setCurrentPage] = useState(1);
+  let [person, setPerson] = useState({});
 
   const onPageSelect = useCallback((page) => {
     setCurrentPage(page.selected);
   }, []);
 
+  const onRowSelect = (person) => {
+    setPerson(person);
+  }
+
   const chunk = _.chunk(data, itemsPerPage);
 
   const rows = chunk[currentPage].map(person => {
     return (
-      <tr key={person.id}>
+      <tr key={person.id} onClick={ onRowSelect.bind(null, person) } >
         <td>{person.id}</td>
         <td>{person.firstName}</td>
         <td>{person.lastName}</td>
@@ -62,7 +68,10 @@ export default ({data}) => {
       previousLinkClassName={'pageLink'}
       nextLinkClassName={'pageLink'}
     />
+    <PersonDetails person={person} />
   </>
 
 }
   
+
+export default Table;
