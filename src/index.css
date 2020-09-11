@@ -61,7 +61,26 @@ td, th {
 }
 
 th {
+  position: relative;
   padding: 6px 3px;
+  cursor: pointer;
+}
+
+th.asc:after {
+  position: absolute;
+  content: "▲";
+  right: 5px;
+}
+
+th.desc:after {
+  position: absolute;
+  content: "▼";
+  right: 5px;
+}
+
+
+th:hover {
+  background: #bbb;
 }
 
 /* tbody tr:nth-child(odd) {
