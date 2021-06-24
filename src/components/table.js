@@ -6,6 +6,8 @@ import FilterInput from './filterInput';
 
 const Table = ({data}) => {
 
+  console.log("render table");
+
   const itemsPerPage = 10;
   let [currentPage, setCurrentPage] = useState(0);
   let [person, setPerson] = useState({});

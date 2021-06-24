@@ -15,10 +15,7 @@ function App() {
 
   return (
     <div className="App">
-      {
-        data.length ? <Table data={data} /> : <Loader />
-      }
-      
+      { data.length ? <Table data={data} /> : <Loader /> }
     </div>
   );
 }
