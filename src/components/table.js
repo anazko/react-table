@@ -50,7 +50,11 @@ const Table = ({data}) => {
 
   if (filter !== '') {
     filteredData = data.filter(item => {
-      if ( item.firstName.toLowerCase().includes(filter.toLowerCase()) ) return true;
+      if ( item.firstName.toLowerCase().includes(filter.toLowerCase()) ) { 
+        return true;
+      } else {
+        return false;
+      }
     })
   } else {
     filteredData = data;
